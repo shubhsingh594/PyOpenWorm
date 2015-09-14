@@ -1,7 +1,7 @@
 from PyOpenWorm import *
 
 
-class Plot(DataObject):
+class Plot():
     """
     Object for storing plot data in PyOpenWorm.
 
@@ -23,7 +23,7 @@ class Plot(DataObject):
 
         if data:
             self.set_data(data)
-        
+
     def _to_string(self, input_list):
         """
         Converts input_list to a string

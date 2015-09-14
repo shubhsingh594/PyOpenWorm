@@ -73,7 +73,7 @@ class Channel(DataObject):
     proteins : DatatypeProperty
         Proteins associated with this channel
     expression_pattern : DatatypeProperty
-       
+
     """
 
     def __init__(self, name=False, **kwargs):
@@ -101,25 +101,3 @@ class Channel(DataObject):
         Return a list of Cells that this ion channel appears in.
         """
         pass
-
-    def identifier(self, *args, **kwargs):
-        # Copied from cell.py
-
-        # If the DataObject identifier isn't variable, then self is a specific
-        # object and this identifier should be returned. Otherwise, if our name
-        # attribute is _already_ set, then we can get the identifier from it and
-        # return that. Otherwise, there's no telling from here what our identifier
-        # should be, so the variable identifier (from DataObject.identifier() must
-        # be returned
-        ident = DataObject.identifier(self, *args, **kwargs)
-        if 'query' in kwargs and kwargs['query'] == True:
-            if not DataObject._is_variable(ident):
-                return ident
-
-        if self.name.hasValue():
-            # name is already set, so we can make an identifier from it
-            n = next(self.name._get())
-            return self.make_identifier(n)
-        else:
-            return ident
-

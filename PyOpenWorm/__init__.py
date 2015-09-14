@@ -60,9 +60,6 @@ __version__ = '0.5.3'
 __author__ = 'Stephen Larson'
 
 import traceback, sys, os
-from .configure import Configure,Configureable,ConfigValue,BadConf
-from .data import Data,DataUser,propertyTypes
-from .dataObject import *
 from .cell import Cell
 from .network import Network
 from .neuron import Neuron
@@ -71,7 +68,6 @@ from .relationship import Relationship
 from .evidence import Evidence,EvidenceError
 from .muscle import Muscle
 from .quantity import Quantity
-from .my_neuroml import NeuroML
 from .connection import Connection
 from .experiment import Experiment
 from .channel import Channel
@@ -173,52 +169,10 @@ def connect(configFile=False,
     if do_logging:
         logging.basicConfig(level=logging.DEBUG)
 
-    if conf:
-        if not isinstance(conf, Data):
-            # Initializes a Data object with
-            # the Configureable.conf
-            Configureable.conf = Data(conf)
-        else:
-            Configureable.conf = conf
-    elif configFile:
-        loadConfig(configFile)
-    else:
-        Configureable.conf = Data({
-            "connectomecsv" : "OpenWormData/aux_data/connectome.csv",
-            "neuronscsv" : "OpenWormData/aux_data/neurons.csv",
-            "rdf.source" : "ZODB",
-            "rdf.store" : "ZODB",
-            "rdf.store_conf" : get_data('worm.db'),
-            "user.email" : "jerry@cn.com",
-            "rdf.upload_block_statement_count" : 50
-        })
-
-
-    Configureable.conf.openDatabase()
-    logging.info("Connected to database")
 
     # have to register the right one to disconnect...
     atexit.register(disconnect)
 
-    # This takes all the classes that we want to store metadata in the database
-    #  and lets our data handling system know about them.
-    #  Should add new classes here if they need to be tracked!
-    DataObject.register()
-    Cell.register()
-    Network.register()
-    Neuron.register()
-    Worm.register()
-    Evidence.register()
-    Muscle.register()
-    Connection.register()
-    SimpleProperty.register()
-    Property.register()
-    Relationship.register()
-    Channel.register()
-    ChannelModel.register()
-    Experiment.register()
-    PatchClampExperiment.register()
-    Plot.register()
 
     m.connected = True
     if data:

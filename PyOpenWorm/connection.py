@@ -11,7 +11,7 @@ class Termination:
     Neuron = 'neuron'
     Muscle = 'muscle'
 
-class Connection(Relationship):
+class Connection():
     """Connection between Cells
 
     Parameters
@@ -41,75 +41,103 @@ class Connection(Relationship):
                  synclass=None,
                  termination=None,
                  **kwargs):
-        Relationship.__init__(self,**kwargs)
 
-        Connection.ObjectProperty('post_cell',owner=self, value_type=Cell)
-        Connection.ObjectProperty('pre_cell',owner=self, value_type=Cell)
 
-        Connection.DatatypeProperty('number',owner=self)
-        Connection.DatatypeProperty('synclass',owner=self)
-        Connection.DatatypeProperty('syntype',owner=self)
-        Connection.DatatypeProperty('termination',owner=self)
+class Connection():
+    """A representation of the connection between neurons. Either a gap junction
+    or a chemical synapse
 
-        if isinstance(pre_cell, P.Cell):
-            self.pre_cell(pre_cell)
-        elif pre_cell is not None:
-            #TODO: don't assume that the pre_cell is a neuron
-            self.pre_cell(P.Neuron(name=pre_cell, conf=self.conf))
+    TODO: Add neurotransmitter type.
+    TODO: Add connection strength
+    """
 
-        if (isinstance(post_cell, P.Cell)):
-            self.post_cell(post_cell) 
-        elif post_cell is not None:
-            #TODO: don't assume that the post_cell is a neuron
-            self.post_cell(P.Neuron(name=post_cell, conf=self.conf))
+    multiple=True
+    def __init__(self,**kwargs):
+        P.Property.__init__(self,'connection',**kwargs)
+        self._conns = []
 
-        if isinstance(termination, basestring):
-            termination = termination.lower()
-            if termination in ('neuron', Termination.Neuron):
-                self.termination(Termination.Neuron)
-            elif termination in ('muscle', Termination.Muscle):
-                self.termination(Termination.Muscle)
+    def get(self,pre_post_or_either='pre',**kwargs):
+        """Get a list of connections associated with the owning neuron.
 
-        if isinstance(number, int):
-            self.number(int(number))
-        elif number is not None:
-            raise Exception("Connection number must be an int, given %s" % number)
+           Parameters
+           ----------
+           type: What kind of junction to look for.
+                        0=all, 1=gap junctions only, 2=all chemical synapses
+                        3=incoming chemical synapses, 4=outgoing chemical synapses
+           Returns
+           -------
+           list of Connection
+        """
+        c = []
+        if pre_post_or_either == 'pre':
+            c.append(P.Connection(pre_cell=self.owner,**kwargs))
+        elif pre_post_or_either == 'post':
+            c.append(P.Connection(post_cell=self.owner,**kwargs))
+        elif pre_post_or_either == 'either':
+            c.append(P.Connection(pre_cell=self.owner,**kwargs))
+            c.append(P.Connection(post_cell=self.owner,**kwargs))
+        for x in c:
+            for r in x.load():
+                yield r
 
-        if isinstance(syntype, basestring):
-            syntype=syntype.lower()
-            if syntype in ('send', SynapseType.Chemical):
-                self.syntype(SynapseType.Chemical)
-            elif syntype in ('gapjunction', SynapseType.GapJunction):
-                self.syntype(SynapseType.GapJunction)
+    def count(self,pre_post_or_either='pre',syntype=None, *args,**kwargs):
+        """Get a list of connections associated with the owning neuron.
 
-        if isinstance(synclass, basestring):
-            self.synclass(synclass)
+           Parameters
+           ----------
+           See parameters for PyOpenWorm.connection.Connection
 
-    def identifier(self, *args, **kwargs):
-        ident = DataObject.identifier(self, *args, **kwargs)
-        if 'query' in kwargs and kwargs['query'] == True:
-            if not DataObject._is_variable(ident):
-                return ident
+           Returns
+           -------
+           int
+               The number of connections matching the paramters given
+        """
+        options = dict()
+        options["pre"] = """
+                     ?x c:pre_cell ?z .
+                     ?z sp:value <%s> .
+                     """ % self.owner.identifier()
+        options["post"] = """
+                      ?x c:post_cell ?z .
+                      ?z sp:value <%s> .
+                      """ % self.owner.identifier()
+        options["either"] = " { %s } UNION { %s } . " % (options['post'], options['pre'])
 
-        if self.pre_cell.hasValue()\
-            and self.post_cell.hasValue()\
-            and self.syntype.hasValue():
-            data = [next(self.pre_cell._get()).identifier(query=False),
-                    next(self.post_cell._get()).identifier(query=False),
-                    next(self.syntype._get())]
-            for i in range(len(data)):
-                if DataObject._is_variable(data[i]):
-                    data[i] = ""
-            if (self.synclass.hasValue()):
-                data.append(next(self.synclass._get()))
-            else:
-                data.append("")
-
-            if (self.number.hasValue()):
-                data.append(next(self.number._get()))
-            else:
-                data.append("")
-
-            return self.make_identifier(data)
+        if syntype is not None:
+            if syntype.lower() == 'gapjunction':
+                syntype='gapJunction'
+            syntype_pattern = "FILTER( EXISTS { ?x c:syntype ?v . ?v sp:value \"%s\" . }) ." % syntype
         else:
-            return ident
+            syntype_pattern = ''
+
+        q = """
+        prefix ow: <http://openworm.org/entities/>
+        prefix c: <http://openworm.org/entities/Connection/>
+        prefix sp: <http://openworm.org/entities/SimpleProperty/>
+        prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT (COUNT(?x) as ?count) WHERE {
+         %s
+         %s
+        }
+        """ % (options[pre_post_or_either], syntype_pattern)
+
+        res = 0
+        for x in self.conf['rdf.graph'].query(q):
+            res = x['count']
+        return int(res)
+
+    def set(self, conn, **kwargs):
+        """Add a connection associated with the owner Neuron
+
+           Parameters
+           ----------
+           conn : PyOpenWorm.connection.Connection
+               connection associated with the owner neuron
+
+           Returns
+           -------
+           A PyOpenWorm.neuron.Connection
+        """
+        #XXX: Should this create a Connection here instead?
+        assert(isinstance(conn, P.Connection))
+        self._conns.append(conn)

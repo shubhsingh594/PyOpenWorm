@@ -18,13 +18,13 @@ class PatchClampExperiment(Experiment):
     cell_age : DatatypeProperty
         Age of the cell
     delta_t : DatatypeProperty
-        
+
     duration : DatatypeProperty
-        
+
     end_time : DatatypeProperty
-        
+
     extra_solution : DatatypeProperty
-        
+
     initial_voltage : DatatypeProperty
         Starting voltage of the patch clamp
     ion_channel : DatatypeProperty
@@ -38,22 +38,22 @@ class PatchClampExperiment(Experiment):
     pipette_solution : DatatypeProperty
         Type of solution in the pipette
     protocol_end : DatatypeProperty
-        
+
     protocol_start : DatatypeProperty
-        
+
     protocol_step : DatatypeProperty
-        
+
     start_time : DatatypeProperty
-        
+
     temperature : DatatypeProperty
-        
+
     type : DatatypeProperty
 
     """
 
     def __init__(self, reference=False, **kwargs):
         Experiment.__init__(self, reference)
-        
+
         # enumerate conditions patch-clamp experiments should have
         self.conditions = [
             'Ca_concentration',
@@ -78,7 +78,7 @@ class PatchClampExperiment(Experiment):
             'temperature',
             'type',
         ]
- 
+
         for c in self.conditions:
             PatchClampExperiment.DatatypeProperty(c, self)
 
@@ -153,7 +153,7 @@ class ChannelModelType:
     patchClamp = "Patch clamp experiment"
     homologyEstimate = "Estimation based on homology"
 
-class ChannelModel(DataObject):
+class ChannelModel():
     """
     A model for an ion channel.
 
@@ -204,4 +204,3 @@ class ChannelModel(DataObject):
                 self.modelType(ChannelModelType.homologyEstimate)
             elif modelType in ('patch-clamp', ChannelModelType.patchClamp):
                 self.modelType(ChannelModelType.patchClamp)
-
