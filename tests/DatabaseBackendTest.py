@@ -1,40 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import sys
-sys.path.insert(0,".")
-import unittest
-import neuroml
-import neuroml.writers as writers
-import PyOpenWorm
-from PyOpenWorm import *
-import test_data as TD
-import networkx
-import rdflib
-import rdflib as R
-import pint as Q
-import os
-import subprocess as SP
-import subprocess
-import tempfile
-import doctest
-
-from glob import glob
-
-from GraphDBInit import *
 
 class DatabaseBackendTest(unittest.TestCase):
     """Integration tests that ensure basic functioning of the database
       backend and connection.
     """
-    def test_namespace_manager(self):
-        c = Configure()
-        c['rdf.source'] = 'default'
-        c['rdf.store'] = 'default'
-        Configureable.conf = c
-        d = Data()
-        d.openDatabase()
-
-        self.assertIsInstance(d['rdf.namespace_manager'], R.namespace.NamespaceManager)
 
     def test_init_no_rdf_store(self):
         """ Should be able to init without these values """
@@ -127,3 +97,44 @@ class DatabaseBackendTest(unittest.TestCase):
         Configureable.conf = False # Ensure that we are disconnected
         with self.assertRaisesRegexp(Exception, ".*[cC]onnect.*"):
             do = DataObject()
+
+
+    USE_BINARY_DB = False
+    BINARY_DB = "OpenWormData/worm.db"
+    TEST_CONFIG = "tests/test_default.conf"
+    try:
+        import bsddb
+        has_bsddb = True
+
+    except ImportError:
+        has_bsddb = False
+
+    try:
+        import numpy
+        has_numpy = True
+    except ImportError:
+        has_numpy = False
+
+    namespaces = { "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#" }
+
+    def clear_graph(graph):
+        graph.update("CLEAR ALL")
+
+    def make_graph(size=100):
+        """ Make an rdflib graph """
+        g = R.Graph()
+        for i in range(size):
+            s = rdflib.URIRef("http://somehost.com/s"+str(i))
+            p = rdflib.URIRef("http://somehost.com/p"+str(i))
+            o = rdflib.URIRef("http://somehost.com/o"+str(i))
+            g.add((s,p,o))
+        return g
+
+    def delete_zodb_data_store(path):
+        os.unlink(path)
+        os.unlink(path + '.index')
+        os.unlink(path + '.tmp')
+        os.unlink(path + '.lock')
+
+if __name__ == '__main__':
+    unittest.main()

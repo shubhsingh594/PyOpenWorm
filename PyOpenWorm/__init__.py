@@ -64,7 +64,6 @@ from .cell import Cell
 from .network import Network
 from .neuron import Neuron
 from .worm import Worm
-from .relationship import Relationship
 from .evidence import Evidence,EvidenceError
 from .muscle import Muscle
 from .quantity import Quantity

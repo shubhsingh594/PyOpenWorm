@@ -66,12 +66,15 @@ setup(
         'zdaemon==4.0.0',
         'zodb==4.1.0',
         'zope.interface==4.1.1',
-        'FuXi'
+        'FuXi',
+        'SQLAlchemy==1.0.8'
+        'rdflib-sqlalchemy'
     ],
     dependency_links = [
         'git://github.com/NeuralEnsemble/libNeuroML.git#egg=libNeuroML',
         'git://github.com/zopefoundation/ZODB.git#egg=ZODB',
         'git://github.com/RDFLib/FuXi#egg=FuXi-1.4.dev-r0',
+        'git://github.com/RDFLib/rdflib-sqlalchemy#egg=rdflib-sqlalchemy'
     ],
     version = '0.5.3',
     packages = ['PyOpenWorm'],

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from .dataObject import DataObject
 from .muscle import Muscle
 from .cell import Cell
 from .network import Network

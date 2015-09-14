@@ -1,36 +1,46 @@
 # -*- coding: utf-8 -*-
 
-import sys
-sys.path.insert(0,".")
 import unittest
-import neuroml
-import neuroml.writers as writers
-import PyOpenWorm
-from PyOpenWorm import *
-import networkx
-import rdflib
-import rdflib as R
-import pint as Q
-import os
-import subprocess as SP
-import subprocess
-import tempfile
-import doctest
 
-from glob import glob
+import PyOpenWorm
+import rdflib
+from rdflib import plugin, Graph, Literal, URIRef
+from rdflib.store import Store
 
 class RDFLibTest(unittest.TestCase):
     """Tests RDFLib, our backend library that interfaces with the database as an
        RDF graph."""
 
+    ident = URIRef("rdflib_test")
+    uri = Literal("sqlite://")
+
     @classmethod
     def setUpClass(cls):
         cls.ns = {"ns1" : "http://example.org/"}
+
+    def setUp(self):
+        #This test uses an SQLAlchemy store with an sqlite backend
+        store = plugin.get("SQLAlchemy", Store)(identifier=self.ident)
+        self.graph = Graph(store, identifier=self.ident)
+        self.graph.open(self.uri, create=True)
+
+    def tearDown(self):
+        self.graph.destroy(self.uri)
+        try:
+            self.graph.close()
+        except:
+            pass
+
+    def test01(self):
+        self.assert_(self.graph is not None)
+        print(self.graph)
+
     def test_uriref_not_url(self):
         try:
             rdflib.URIRef("daniel@example.com")
         except:
             self.fail("Doesn't actually fail...which is weird")
+
     def test_uriref_not_id(self):
         """ Test that rdflib throws up a warning when we do something bad """
         #XXX: capture the logged warning
@@ -58,3 +68,7 @@ class RDFLibTest(unittest.TestCase):
         a = rdflib.BNode()
         b = rdflib.BNode()
         self.assertNotEqual(a, b)
+
+
+if __name__ == '__main__':
+    unittest.main()

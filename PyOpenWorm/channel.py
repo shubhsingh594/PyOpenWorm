@@ -1,6 +1,6 @@
 from PyOpenWorm import *
 
-class Models(Property):
+class Models():
     multiple=True
     def __init__(self, **kwargs):
         Property.__init__(self, 'models', **kwargs)
@@ -52,7 +52,7 @@ class Models(Property):
             for x in c.triples(**kwargs):
                 yield x
 
-class Channel(DataObject):
+class Channel():
     """
     A biological ion channel.
 

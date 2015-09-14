@@ -87,7 +87,7 @@ class PatchClampExperiment(Experiment):
                 setattr(self, c, v)
 
 
-class References(Property):
+class References():
     multiple=True
     def __init__(self, **kwargs):
         Property.__init__(self, 'references', **kwargs)

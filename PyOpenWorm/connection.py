@@ -41,6 +41,7 @@ class Connection():
                  synclass=None,
                  termination=None,
                  **kwargs):
+                 pass
 
 
 class Connection():

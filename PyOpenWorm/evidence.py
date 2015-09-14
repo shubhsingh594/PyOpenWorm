@@ -189,6 +189,7 @@ class Evidence():
         A URL that points to evidence
     """
     def __init__(self, conf=False, **source):
+        pass
 
     def add_data(self, k, v):
         """ Add a field
