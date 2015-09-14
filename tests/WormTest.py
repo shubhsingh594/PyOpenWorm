@@ -1,17 +1,17 @@
 
 import unittest
-import PyOpenWorm
+from PyOpenWorm import *
 
 class WormTest(unittest.TestCase):
     """Test for Worm."""
 
     def test_get_network(self):
-        w = PyOpenWorm.Worm()
+        w = Worm()
         w.network(Network())
         self.assertIsInstance(Worm().get_neuron_network(), Network)
 
     def test_muscles1(self):
-        w = PyOpenWorm.Worm()
+        w = Worm()
         w.cell(Muscle(name='MDL08'))
         w.cell(Muscle(name='MDL15'))
         self.assertIn(Muscle(name='MDL08'), list(Worm().muscles()))

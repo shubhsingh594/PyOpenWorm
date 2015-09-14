@@ -27,7 +27,6 @@ class Cell():
         The 'adult' name of the cell typically used by biologists when discussing C. elegans
     lineageName : DatatypeProperty
         The lineageName of the cell
-
     description : DatatypeProperty
         A description of the cell
     divisionVolume : DatatypeProperty
@@ -42,14 +41,14 @@ class Cell():
             >>> c.divisionVolume(v)
     """
     def __init__(self, name=False, lineageName=False, **kwargs):
-        DataObject.__init__(self,**kwargs)
+        #DataObject.__init__(self,**kwargs)
 
-        Cell.DatatypeProperty('lineageName',owner=self)
-        Cell.DatatypeProperty('name',owner=self)
-        Cell.DatatypeProperty('divisionVolume',owner=self)
-        Cell.DatatypeProperty('description',owner=self)
-        Cell.DatatypeProperty('wormbaseID', owner=self)
-        Cell.DatatypeProperty('synonym', owner=self, multiple=True)
+        #Cell.DatatypeProperty('lineageName',owner=self)
+        #Cell.DatatypeProperty('name',owner=self)
+        #Cell.DatatypeProperty('divisionVolume',owner=self)
+        #Cell.DatatypeProperty('description',owner=self)
+        #Cell.DatatypeProperty('wormbaseID', owner=self)
+        #Cell.DatatypeProperty('synonym', owner=self, multiple=True)
 
         if name:
             self.name(name)

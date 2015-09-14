@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from PyOpenWorm import *
 from .muscle import Muscle
 from .cell import Cell
 from .network import Network
@@ -57,7 +58,7 @@ class Worm():
         """
         out = set()
         for cell in cells:
-            if cell isinstance Muscle:
+            if isinstance(cell, Muscle):
                 out.add(cell)
         return out
 
@@ -69,6 +70,6 @@ class Worm():
 
             >>> P.Worm().cell(Muscle(name=='PM1D'))
         """
-        if (cell_obj isinstance Cell) == False:
+        if isinstance(cell_obj,Cell) == False:
             raise InputError("Must include an object that is a Cell or a subclass")
         cells.add(cell_obj)
