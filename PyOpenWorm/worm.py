@@ -10,8 +10,11 @@ class Worm():
 
     All worms with the same name are considered to be the same object.
     """
+    def __init__(self):
+        self.network = Network()
+        self.cells = set()
 
-    def network(self):
+    def network(self, n=None):
         """
         Return the neuron network of the worm.
 
@@ -33,7 +36,9 @@ class Worm():
         :returns: An object to work with the network of the worm
         :rtype: PyOpenWorm.Network
         """
-        return self.neuron_network()
+        if n != None:
+            self.network = n
+        return self.network
 
     def muscles(self):
         """
@@ -49,14 +54,21 @@ class Worm():
 
         :returns: A set of all muscles
         :rtype: set
-         """
-
-    def graph(self):
         """
-         Get the underlying semantic network as an RDFLib Graph
+        out = set()
+        for cell in cells:
+            if cell isinstance Muscle:
+                out.add(cell)
+        return out
 
-        :returns: A semantic network containing information about the worm
-        :rtype: rdflib.ConjunctiveGraph
-         """
+    def cell(self, cell_obj):
+        """
+        Add a cell object to the worm
 
-        return self.rdf
+        Example::
+
+            >>> P.Worm().cell(Muscle(name=='PM1D'))
+        """
+        if (cell_obj isinstance Cell) == False:
+            raise InputError("Must include an object that is a Cell or a subclass")
+        cells.add(cell_obj)

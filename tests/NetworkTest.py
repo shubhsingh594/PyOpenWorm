@@ -1,27 +1,6 @@
-import sys
-sys.path.insert(0,".")
-import unittest
-import neuroml
-import neuroml.writers as writers
-import PyOpenWorm
-from PyOpenWorm import *
-import networkx
-import rdflib
-import rdflib as R
-import pint as Q
-import os
-import subprocess as SP
-import subprocess
-import tempfile
-import doctest
+import PyOpenWorm, unittest
 
-from glob import glob
-
-from GraphDBInit import *
-
-from DataTestTemplate import _DataTest
-
-class NetworkTest(_DataTest):
+class NetworkTest(unittest.TestCase):
     def setUp(s):
         _DataTest.setUp(s)
         s.net = Network(conf=s.config)
@@ -48,6 +27,5 @@ class NetworkTest(_DataTest):
             self.assertIsInstance(x,Connection)
             break
 
-    def test_as_networkx(self):
-        """Test that as_networkx returns the correct type."""
-        self.assertTrue(isinstance(self.net.as_networkx(),networkx.DiGraph))
+if __name__ == '__main__':
+    unittest.main()

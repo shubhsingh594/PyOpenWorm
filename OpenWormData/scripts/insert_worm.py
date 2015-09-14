@@ -55,13 +55,43 @@ def upload_muscles():
                 if line[7] or line[8] or line[9] == '1':  # muscle's marked in these columns
                     muscle_name = normalize(line[0]).upper()
                     m = P.Muscle(name=muscle_name)
-                    w.muscle(m)
+                    w.cell(m)
             ev.asserts(w)
             ev.save()
         #second step, get the relationships between them and add them to the graph
         print ("uploaded muscles")
     except Exception:
         traceback.print_exc()
+
+
+def upload_neurons():
+    try:
+        ev = P.Evidence(title="C. elegans Cell List - WormBase.csv")
+        w = P.Worm()
+        n = P.Network()
+        w.network(n)
+        # insert neurons.
+        # save
+        i = 0
+        with open(CELL_NAMES_SOURCE) as csvfile:
+            csvreader = csv.reader(csvfile)
+
+            for num, line in enumerate(csvreader):
+                if num < 4:  # skip rows with no data
+                    continue
+
+                if line[5] == '1':  # neurons marked in this column
+                    neuron_name = normalize(line[0]).upper()
+                    n.neuron(P.Neuron(name=neuron_name))
+                    i = i + 1
+
+        ev.asserts(n)
+        ev.save()
+        #second step, get the relationships between them and add them to the graph
+        print ("uploaded " + str(i) + " neurons")
+    except Exception:
+        traceback.print_exc()
+
 
 
 def upload_lineage_and_descriptions():
@@ -143,34 +173,6 @@ def norn(x):
     except StopIteration:
         return None
 
-
-def upload_neurons():
-    try:
-        ev = P.Evidence(title="C. elegans Cell List - WormBase.csv")
-        w = P.Worm()
-        n = P.Network()
-        w.neuron_network(n)
-        # insert neurons.
-        # save
-        i = 0
-        with open(CELL_NAMES_SOURCE) as csvfile:
-            csvreader = csv.reader(csvfile)
-
-            for num, line in enumerate(csvreader):
-                if num < 4:  # skip rows with no data
-                    continue
-
-                if line[5] == '1':  # neurons marked in this column
-                    neuron_name = normalize(line[0]).upper()
-                    n.neuron(P.Neuron(name=neuron_name))
-                    i = i + 1
-
-        ev.asserts(n)
-        ev.save()
-        #second step, get the relationships between them and add them to the graph
-        print ("uploaded " + str(i) + " neurons")
-    except Exception:
-        traceback.print_exc()
 
 
 def get_altun_evidence():
