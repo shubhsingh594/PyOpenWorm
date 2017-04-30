@@ -14,6 +14,9 @@ from six.moves.urllib.parse import urlencode
 from six.moves.urllib.error import HTTPError
 import six.moves.urllib.request as urllib_request
 
+from pytest_profile import baseline
+
+
 
 # Module level, to pass state across tests.  This is not multiprocessing-safe.
 function_profile_list = []
@@ -24,6 +27,7 @@ branch = None
 environment = None
 username = None
 password = None
+baseline_profile = None
 
 
 def pytest_addoption(parser):
@@ -47,7 +51,7 @@ def pytest_configure(config):
     """
     Called before tests are collected.
     """
-    global enabled, submit_url, commit, branch, environment, username, password
+    global enabled, submit_url, commit, branch, environment, username, password, baseline_profile
 
     # enabled = config.getoption('profile') or config.getoption('cs_submit_url') is not None
     enabled = config.getoption('cs_url') is not None
@@ -60,8 +64,16 @@ def pytest_configure(config):
 
     missing_argument = not commit or not branch or not environment
     if submit_url and missing_argument:
-        raise ValueError("If calling with --code-speed-submit, user must supply " +\
+        raise ValueError("If calling with --code-speed-submit, user must supply " + \
                          "--commit, --branch, and --environment arguments.")
+
+    if enabled:
+        profiler = cProfile.Profile()
+        profiler.enable()
+        baseline()
+        profiler.disable()
+        fp = FunctionProfile(cprofile=profiler, function_name='baseline')
+        baseline_profile = fp
 
 
 @pytest.mark.hookwrapper
@@ -78,7 +90,7 @@ def pytest_runtest_call(item):
     outcome = yield
     item.profiler.disable() if item.enabled else None
 
-    # Item's excinfo will indicate any exceptions thrown
+    # Outcome's excinfo will indicate any exceptions thrown
     if item.enabled and outcome.excinfo is None:
         # item.listnames() returns list of form: ['PyOpenWorm', 'tests/CellTest.py', 'CellTest', 'test_blast_space']
         fp = FunctionProfile(cprofile=item.profiler, function_name=item.listnames()[-1])
@@ -244,7 +256,7 @@ class FunctionProfile(object):
         :param benchmark: "int" or "float"
         :return: Codespeed formatted dictionary.
         """
-        # Currently, Codespeed breaks if a branch named anything other than 'default' is submitted.
+
         return {
             "commitid": commit,
             "project": "PyOpenWorm",
@@ -252,5 +264,5 @@ class FunctionProfile(object):
             "executable": executable,
             "benchmark": self.function_name,
             "environment": environment,
-            "result_value": self.cumulative_time / self.calls
+            "result_value": self.cumulative_time / self.calls / baseline_profile.cumulative_time
         }
