@@ -610,6 +610,73 @@ class DefaultSource(RDFSource):
         self.graph = ConjunctiveGraph(self.conf['rdf.store'])
         self.graph.open(self.conf['rdf.store_conf'], create=True)
 
+#
+# class ZODBSource(RDFSource):
+#
+#     """ Reads from and queries against a configured Zope Object Database.
+#
+#         If the configured database does not exist, it is created.
+#
+#         The database store is configured with::
+#
+#             "rdf.source" = "ZODB"
+#             "rdf.store_conf" = <location of your ZODB database>
+#
+#         Leaving unconfigured simply gives an in-memory data store.
+#     """
+#
+#     def __init__(self, *args, **kwargs):
+#         super(ZODBSource, self).__init__(*args, **kwargs)
+#         self.conf['rdf.store'] = "ZODB"
+#
+#     def open(self):
+#         import ZODB
+#         from ZODB.FileStorage import FileStorage
+#         self.path = self.conf['rdf.store_conf']
+#         openstr = os.path.abspath(self.path)
+#
+#         fs = FileStorage(openstr)
+#         self.zdb = ZODB.DB(fs, cache_size=1600)
+#         self.conn = self.zdb.open()
+#         root = self.conn.root()
+#         if 'rdflib' not in root:
+#             root['rdflib'] = ConjunctiveGraph('ZODB')
+#         self.graph = root['rdflib']
+#         try:
+#             transaction.commit()
+#         except Exception:
+#             # catch commit exception and close db.
+#             # otherwise db would stay open and follow up tests
+#             # will detect the db in error state
+#             L.warning('Forced to abort transaction on ZODB store opening')
+#             traceback.print_exc()
+#             transaction.abort()
+#         transaction.begin()
+#         self.graph.open(self.path)
+#
+#     def close(self):
+#         if self.graph is False:
+#             return
+#
+#         self.graph.close()
+#
+#         try:
+#             transaction.commit()
+#         except Exception:
+#             # catch commit exception and close db.
+#             # otherwise db would stay open and follow up tests
+#             # will detect the db in error state
+#             traceback.print_exc()
+#             L.warning('Forced to abort transaction on ZODB store closing')
+#             transaction.abort()
+#         self.conn.close()
+#         self.zdb.close()
+#         self.graph = False
+
+
+
+
+
 
 class ZODBSource(RDFSource):
 
@@ -631,12 +698,12 @@ class ZODBSource(RDFSource):
 
     def open(self):
         import ZODB
-        from ZODB.FileStorage import FileStorage
+        import ZEO
+        from ZEO.ClientStorage import ClientStorage
+        address = ("127.0.0.1",8090)
         self.path = self.conf['rdf.store_conf']
-        openstr = os.path.abspath(self.path)
-
-        fs = FileStorage(openstr)
-        self.zdb = ZODB.DB(fs, cache_size=1600)
+        storage = ClientStorage(address)
+        self.zdb = ZODB.DB(storage)
         self.conn = self.zdb.open()
         root = self.conn.root()
         if 'rdflib' not in root:

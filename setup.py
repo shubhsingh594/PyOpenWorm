@@ -8,7 +8,12 @@ import sys
 
 def _post_install():
     import subprocess
+    import time
+    subprocess.Popen(["runzeo","-C","./PyOpenWorm/zeo.conf"])
+    print "server started"
+    time.sleep(5)
     subprocess.call([sys.executable, 'post_install.py'])
+
 
 class install(_install):
     def run(self):
@@ -70,6 +75,7 @@ setup(
         'ZConfig==3.0.4',
         'zdaemon==4.0.0',
         'zodb==4.1.0',
+        'zeo==4.1.0',
         'zope.interface==4.1.1',
         'lazy-object-proxy==1.2.1',
         'wrapt'
