@@ -20,6 +20,11 @@ user_id = os.stat(pwd).st_uid # this is the person that cloned the repo
 script_location = os.path.join(pwd, 'OpenWormData', 'scripts')
 user_script = 'insert_worm.py' # script(s) we want to be run as non-root
 
+
+#os.chmod(new_location, 0o777)
+zeo_sock_location = os.path.abspath('zeo.sock')
+os.chmod(zeo_sock_location, 0o777)
+os.chown(package_location, user_id, -1)
 print(('Running {} as UID {}'.format(user_script, user_id)))
 pid = os.fork()
 if pid == 0:
@@ -42,4 +47,3 @@ for db_file in db_files:
     os.chmod(new_location, 0o777)
 # change directory owner to allow writing and reading from db in that dir
 os.chown(package_location, user_id, -1)
-

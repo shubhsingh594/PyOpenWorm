@@ -1,0 +1,172 @@
+2017-08-25T16:45:40 (4635) opening storage '1' using FileStorage
+2017-08-25T16:47:44 (4708) opening storage '1' using FileStorage
+2017-08-25T16:47:44 Ignoring index for /home/shubham/PyOpenWorm/worm.db
+2017-08-25T16:49:32 (4761) opening storage '1' using FileStorage
+2017-08-25T16:49:32 Ignoring index for /home/shubham/PyOpenWorm/worm.db
+2017-08-25T16:53:32 (4862) opening storage '1' using FileStorage
+2017-08-25T16:53:32 Ignoring index for /home/shubham/PyOpenWorm/worm.db
+2017-08-25T16:53:32 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-25T16:53:32 (4862) listening on ('localhost', 8090)
+2017-08-25T16:54:56 (127.0.0.1:54666) received handshake 'Z3101'
+2017-08-25T16:57:15 (127.0.0.1:54666) disconnected
+2017-08-25T16:57:34 (127.0.0.1:54678) received handshake 'Z3101'
+2017-08-25T16:57:51 (4862) terminated by SIGINT
+2017-08-25T16:57:51 (127.0.0.1:54678) disconnected
+2017-08-25T16:57:51 closing storage '1'
+2017-08-25T17:39:21 (5655) opening storage '1' using FileStorage
+2017-08-25T17:39:21 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-25T17:39:21 (5655) listening on ('localhost', 8090)
+2017-08-25T17:39:57 (5655) terminated by SIGINT
+2017-08-25T17:39:57 closing storage '1'
+2017-08-25T17:40:00 (5698) opening storage '1' using FileStorage
+2017-08-25T17:40:00 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-25T17:40:00 (5698) listening on ('localhost', 8090)
+2017-08-25T17:40:05 (127.0.0.1:55164) received handshake 'Z3101'
+2017-08-25T17:44:00 (127.0.0.1:55164) disconnected
+2017-08-25T17:44:48 (127.0.0.1:55206) received handshake 'Z3101'
+2017-08-25T17:45:03 (127.0.0.1:55206) disconnected
+2017-08-25T18:00:48 (127.0.0.1:55462) received handshake 'Z3101'
+2017-08-25T18:00:49 (127.0.0.1:55464) received handshake 'Z3101'
+2017-08-25T18:01:01 (127.0.0.1:55464) disconnected
+2017-08-25T18:01:01 (127.0.0.1:55462) disconnected
+2017-08-25T18:02:04 (127.0.0.1:55488) received handshake 'Z3101'
+2017-08-25T18:02:06 (127.0.0.1:55490) received handshake 'Z3101'
+2017-08-25T18:02:13 (127.0.0.1:55490) disconnected
+2017-08-25T18:02:13 (127.0.0.1:55488) disconnected
+2017-08-25T18:14:42 (127.0.0.1:55742) received handshake 'Z3101'
+2017-08-25T18:14:44 (127.0.0.1:55744) received handshake 'Z3101'
+2017-08-25T18:15:56 (127.0.0.1:55744) disconnected
+2017-08-25T18:15:56 (127.0.0.1:55742) disconnected
+2017-08-25T18:16:07 (127.0.0.1:55796) received handshake 'Z3101'
+2017-08-25T18:16:09 (127.0.0.1:55798) received handshake 'Z3101'
+2017-08-25T18:16:47 (127.0.0.1:55818) received handshake 'Z3101'
+2017-08-25T18:17:06 (127.0.0.1:55818) disconnected
+2017-08-25T18:17:18 (127.0.0.1:55798) disconnected
+2017-08-25T18:17:18 (127.0.0.1:55796) disconnected
+2017-08-25T18:17:32 (127.0.0.1:55840) received handshake 'Z3101'
+2017-08-25T18:17:33 (127.0.0.1:55840) disconnected
+2017-08-25T18:17:39 (127.0.0.1:55862) received handshake 'Z3101'
+2017-08-25T18:17:40 (127.0.0.1:55862) disconnected
+2017-08-25T18:17:57 (127.0.0.1:55868) received handshake 'Z3101'
+2017-08-25T18:17:58 (127.0.0.1:55868) disconnected
+2017-08-25T18:18:09 (127.0.0.1:55880) received handshake 'Z3101'
+2017-08-25T18:21:33 (127.0.0.1:55880) disconnected
+2017-08-25T18:24:50 (127.0.0.1:55948) received handshake 'Z3101'
+2017-08-25T18:24:51 (127.0.0.1:55950) received handshake 'Z3101'
+2017-08-25T18:25:47 (127.0.0.1:55950) disconnected
+2017-08-25T18:25:47 (127.0.0.1:55948) disconnected
+2017-08-25T18:26:50 (127.0.0.1:55992) received handshake 'Z3101'
+2017-08-25T18:26:51 (127.0.0.1:55994) received handshake 'Z3101'
+2017-08-25T18:27:55 (127.0.0.1:55994) disconnected
+2017-08-25T18:27:55 (127.0.0.1:55992) disconnected
+2017-08-25T19:56:34 (unconnected) disconnected
+2017-08-25T19:56:40 (127.0.0.1:58592) received handshake 'Z3101'
+2017-08-25T20:00:51 (127.0.0.1:58592) disconnected
+2017-08-26T15:00:45 (9031) opening storage '1' using FileStorage
+2017-08-26T15:00:48 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-26T15:00:49 (9031) listening on ('zeo.sock', 0)
+2017-08-26T15:02:22 (9091) opening storage '1' using FileStorage
+2017-08-26T15:02:24 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-26T15:02:26 (9091) listening on ./zeo.sock
+2017-08-26T15:03:55 (9091) terminated by SIGINT
+2017-08-26T15:03:55 closing storage '1'
+2017-08-26T15:04:01 (9165) opening storage '1' using FileStorage
+2017-08-26T15:04:01 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-26T15:04:02 (9165) listening on ./zeo.sock
+2017-08-26T15:04:15 (9165) terminated by SIGINT
+2017-08-26T15:04:15 closing storage '1'
+2017-08-27T20:53:28 (4713) opening storage '1' using FileStorage
+2017-08-27T20:53:29 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T20:53:30 (4713) listening on ./zeo.sock
+2017-08-27T23:28:20 (4713) terminated by SIGINT
+2017-08-27T23:28:20 closing storage '1'
+2017-08-27T23:28:21 (4713) terminated by SIGINT
+2017-08-27T23:28:21 Error saving index on close()
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/ZODB-4.1.0-py2.7.egg/ZODB/FileStorage/FileStorage.py", line 429, in close
+    self._save_index()
+  File "/usr/local/lib/python2.7/dist-packages/ZODB-4.1.0-py2.7.egg/ZODB/FileStorage/FileStorage.py", line 286, in _save_index
+    self._index.save(self._pos, tmp_name)
+  File "/usr/local/lib/python2.7/dist-packages/ZODB-4.1.0-py2.7.egg/ZODB/fsIndex.py", line 116, in save
+    for k, v in six.iteritems(self._data):
+  File "/usr/local/lib/python2.7/dist-packages/six-1.10.0-py2.7.egg/six.py", line 599, in iteritems
+    return d.iteritems(**kw)
+  File "/home/shubham/.local/lib/python2.7/site-packages/ZEO/runzeo.py", line 234, in wrapper
+    method()
+  File "/home/shubham/.local/lib/python2.7/site-packages/ZEO/runzeo.py", line 271, in handle_sigint
+    sys.exit(0)
+SystemExit: 0
+2017-08-27T23:28:25 (7828) opening storage '1' using FileStorage
+2017-08-27T23:28:26 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:28:28 (7828) listening on ./zeo.sock
+2017-08-27T23:29:09 (unconnected) disconnected
+2017-08-27T23:29:24 (7828) terminated by SIGINT
+2017-08-27T23:29:24 closing storage '1'
+2017-08-27T23:30:00 (8160) opening storage '1' using FileStorage
+2017-08-27T23:30:00 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:30:01 (8160) listening on ./zeo.sock
+2017-08-27T23:30:18 (8160) terminated by SIGINT
+2017-08-27T23:30:18 closing storage '1'
+2017-08-27T23:31:07 (8207) opening storage '1' using FileStorage
+2017-08-27T23:31:07 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:31:08 (8207) listening on ./PyOpenWorm/zeo.sock
+2017-08-27T23:31:32 (unconnected) disconnected
+2017-08-27T23:32:36 (8271) opening storage '1' using FileStorage
+2017-08-27T23:32:36 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:32:37 (8271) listening on ./PyOpenWorm/zeo.sock
+2017-08-27T23:34:19 (8271) terminated by SIGINT
+2017-08-27T23:34:19 closing storage '1'
+2017-08-27T23:34:30 (8349) opening storage '1' using FileStorage
+2017-08-27T23:34:30 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:34:31 (8349) listening on ./PyOpenWorm/zeo.sock
+2017-08-27T23:35:24 (8349) terminated by SIGINT
+2017-08-27T23:35:24 closing storage '1'
+2017-08-27T23:35:33 (8390) opening storage '1' using FileStorage
+2017-08-27T23:35:33 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:35:34 (8390) listening on ./PyOpenWorm/zeo.sock
+2017-08-27T23:36:08 (8390) terminated by SIGINT
+2017-08-27T23:36:08 closing storage '1'
+2017-08-27T23:36:12 (8429) opening storage '1' using FileStorage
+2017-08-27T23:36:12 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:36:14 (8429) listening on ./PyOpenWorm/zeo.sock
+2017-08-27T23:36:24 (8429) terminated by SIGINT
+2017-08-27T23:36:24 closing storage '1'
+2017-08-27T23:36:41 (8453) opening storage '1' using FileStorage
+2017-08-27T23:36:41 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:36:42 (8453) listening on ./PyOpenWorm/zeo.sock
+2017-08-27T23:36:56 (8453) terminated by SIGINT
+2017-08-27T23:36:56 closing storage '1'
+2017-08-27T23:38:44 (8550) opening storage '1' using FileStorage
+2017-08-27T23:38:44 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:38:46 (8550) listening on ./zeo.sock
+2017-08-27T23:41:28 (8550) terminated by SIGINT
+2017-08-27T23:41:28 closing storage '1'
+2017-08-27T23:42:34 (8655) opening storage '1' using FileStorage
+2017-08-27T23:42:34 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:42:35 (8655) listening on ./zeo.sock
+2017-08-27T23:46:34 (8655) terminated by SIGINT
+2017-08-27T23:46:34 closing storage '1'
+2017-08-27T23:48:21 (8792) opening storage '1' using FileStorage
+2017-08-27T23:48:21 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:48:22 (8792) listening on ./zeo.sock
+2017-08-27T23:48:37 (8792) terminated by SIGINT
+2017-08-27T23:48:37 closing storage '1'
+2017-08-27T23:50:13 (8842) opening storage '1' using FileStorage
+2017-08-27T23:50:13 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-27T23:50:15 (8842) listening on ./zeo.sock
+2017-08-27T23:50:24 (8842) terminated by SIGINT
+2017-08-27T23:50:24 closing storage '1'
+2017-08-28T00:00:03 (9008) opening storage '1' using FileStorage
+2017-08-28T00:00:03 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-28T00:00:04 (9008) listening on ./zeo.sock
+2017-08-28T00:00:28 (unconnected) disconnected
+2017-08-28T00:00:52 (unconnected) disconnected
+2017-08-28T00:02:15 (9121) opening storage '1' using FileStorage
+2017-08-28T00:02:15 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-28T00:02:16 (9121) listening on ./zeo.sock
+2017-08-28T00:02:33 (unconnected) disconnected
+2017-08-28T00:02:56 (9171) opening storage '1' using FileStorage
+2017-08-28T00:02:56 StorageServer created RW with storages: 1:RW:worm.db
+2017-08-28T00:02:58 (9171) listening on ./zeo.sock
+2017-08-28T00:03:02 () received handshake 'Z3101'
+2017-08-28T00:06:59 disconnected

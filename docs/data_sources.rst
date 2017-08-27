@@ -63,6 +63,27 @@ Muscle cells
 .. _m11: https://github.com/openworm/PyOpenWorm/blob/945f7172f0dff1d022ce0574f3c630ee53297386/OpenWormData/scripts/insert_worm.py#L44
 .. _m12: https://github.com/openworm/PyOpenWorm/blob/945f7172f0dff1d022ce0574f3c630ee53297386/OpenWormData/scripts/insert_worm.py#L432
 
+
+Channel cells
+------------
+
+- Channel names : Extracted from `ChannelWorm <cw_>`_.  Staged in `this csv file <csv1_>`_.  Parsed by `this method <m11_>`_.
+- Channel descriptions : Extracted from `ChannelWorm <cw_>`_.  Staged in `this csv file <csv1_>`_.  Parsed by `this method <m11_>`_.
+- Channel expression pattern : Extracted from `ChannelWorm <cw_>`_.  Staged in `this csv file <csv1_>`_.  Parsed by `this method <m11_>`_.
+- Channel gene name : Extracted from `ChannelWorm <cw_>`_.  Staged in `this csv file <csv1_>`_.  Parsed by `this method <m11_>`_.
+- Channel Neuro ML : Extracted from `ChannelWorm <cw1_>`_.  Staged in `this csv file <csv2_>`_.  Parsed by `this method <m12_>`_.
+- Channel appearsIn : Dynamic version on `this google spreadsheet <gs1_>`_. Staged in `this tsv file <tsv1_>`_. Parsed by 'this method <m13_>'_.
+
+.. _cw: https://github.com/openworm/ChannelWorm/tree/ec3e1be4a7184a59d76b4516f3b67946f70e6885
+.. _cw1: https://github.com/openworm/ChannelWorm/tree/ec3e1be4a7184a59d76b4516f3b67946f70e6885/channelworm/fitter/examples
+.. _csv1: https://github.com/openworm/PyOpenWorm/blob/2062c75de3d2c4056e1691593dc8b66a1c694966/OpenWormData/aux_data/ion_channel.csv
+.. _csv2: https://github.com/openworm/PyOpenWorm/blob/2062c75de3d2c4056e1691593dc8b66a1c694966/OpenWormData/aux_data/NeuroML_Channel.csv
+.. _m11: https://github.com/openworm/PyOpenWorm/blob/2062c75de3d2c4056e1691593dc8b66a1c694966/OpenWormData/scripts/insert_worm.py#L51
+.. _m12: https://github.com/openworm/PyOpenWorm/blob/2062c75de3d2c4056e1691593dc8b66a1c694966/OpenWormData/scripts/insert_worm.py#L35
+.. _gs1: https://docs.google.com/spreadsheets/d/1Oct5cXqSUhLLcPe18Ue11VoLZbeyxO8OdSmPnKxy3ac/edit#gid=1299673096
+.. _tsv1: https://github.com/openworm/PyOpenWorm/blob/2062c75de3d2c4056e1691593dc8b66a1c694966/OpenWormData/aux_data/Ion%20channels%20-%20Ion%20Channel%20To%20Neuron.tsv
+.. _m13: https://github.com/openworm/PyOpenWorm/blob/2062c75de3d2c4056e1691593dc8b66a1c694966/OpenWormData/scripts/insert_worm.py#L77
+
 Connectome
 ----------
 
