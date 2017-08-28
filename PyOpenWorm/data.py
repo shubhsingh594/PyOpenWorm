@@ -701,9 +701,9 @@ class ZODBSource(RDFSource):
         import ZEO
         import os
         from ZEO.ClientStorage import ClientStorage
-        address = ("127.0.0.1",8090)
+        address = ('172.16.83.252',30)
         self.path = self.conf['rdf.store_conf']
-        storage = ClientStorage(os.path.abspath('../../zeo.sock'))
+        storage = ClientStorage(address)
         self.zdb = ZODB.DB(storage)
         self.conn = self.zdb.open()
         root = self.conn.root()
